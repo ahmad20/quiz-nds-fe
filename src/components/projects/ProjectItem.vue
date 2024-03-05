@@ -10,7 +10,7 @@ import { defineProps } from "vue";
 defineProps({
   title: {
     type: String,
-    default: "",
+    default: '',
   },
 });
 </script>

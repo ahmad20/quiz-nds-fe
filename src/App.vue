@@ -1,11 +1,11 @@
 <template>
   <main>
     <UserList :users="activeUsers" @list-projects="selectUser" />
-    <ProjectList :user="selectUser" />
+    <ProjectList :user="selectedUser" />
   </main>
 </template>
 
-<script>
+<script setup>
 import USER_DATA from "./dummy-data.js";
 
 import UserList from "./components/users/UserList.vue";
@@ -17,7 +17,7 @@ const selectedUser = ref(null);
 const activeUsers = ref(USER_DATA);
 
 function selectUser(uid) {
-  selectedUser.value = activeUsers.value.find((user) => user.id === uid);
+  selectedUser.value = activeUsers.value.find((usr) => usr.id === uid);
 }
 </script>
 
