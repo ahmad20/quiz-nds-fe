@@ -1,53 +1,56 @@
 <template>
- <BaseContainer>
-   <h2>Active Users</h2>
-   <BaseSearch
-     @search="updateSearch"
-     :search-term="enteredSearchTerm"
-   />
-   <div>
-     <button @click="sort('asc')" :class="{ selected: sorting === 'asc' }">Sort Ascending</button>
-     <button @click="sort('desc')" :class="{ selected: sorting === 'desc' }">Sort Descending</button>
-   </div>
-   <ul>
-     <UserItem
-       v-for="user in displayedUsers"
-       :key="user.id"
-       :user-name="user.fullName"
-       :id="user.id"
-       @list-projects="handleList"
-     />
-   </ul>
- </BaseContainer>
+  <BaseContainer>
+    <h2>Active Users</h2>
+    <BaseSearch @search="updateSearch" :search-term="enteredSearchTerm" />
+    <div>
+      <button @click="sort('asc')" :class="{ selected: sorting === 'asc' }">
+        Sort Ascending
+      </button>
+      <button @click="sort('desc')" :class="{ selected: sorting === 'desc' }">
+        Sort Descending
+      </button>
+    </div>
+    <ul>
+      <UserItem
+        v-for="user in displayedUsers"
+        :key="user.id"
+        :user-name="user.fullName"
+        :id="user.id"
+        @list-projects="handleList"
+      />
+    </ul>
+  </BaseContainer>
 </template>
 
 <script setup>
-import UserItem from './UserItem.vue'
-import BaseSearch from '../UI/BaseSearch.vue'
-import BaseContainer from "@/components/UI/BaseContainer.vue";
+import UserItem from "./UserItem.vue";
+import BaseSearch from "../UI/BaseSearch.vue";
+import BaseContainer from "../UI/BaseContainer.vue";
 
-import {defineProps, defineEmits, computed, watch, ref} from 'vue';
+import { defineProps, defineEmits, computed, watch, ref } from "vue";
 
-const props = defineProps(["users"])
-const emit = defineEmits(["list-projects"])
+const props = defineProps(["users"]);
+const emit = defineEmits(["list-projects"]);
 
-const enteredSearchTerm = ref("")
-const activeSearchTerm = ref("")
+const enteredSearchTerm = ref("");
+const activeSearchTerm = ref("");
 const sorting = ref(null);
 
 const handleList = (val) => {
-  emit("list-projects", val)
-}
+  emit("list-projects", val);
+};
 
 const availableUsers = computed(() => {
   let users = [];
   if (activeSearchTerm.value) {
-    users = props.users.filter((usr) => usr.fullName.includes(activeSearchTerm.value));
+    users = props.users.filter((usr) =>
+      usr.fullName.includes(activeSearchTerm.value)
+    );
   } else if (props.users) {
     users = props.users;
   }
   return users;
-})
+});
 
 const displayedUsers = computed(() => {
   if (!sorting.value) {
@@ -57,7 +60,7 @@ const displayedUsers = computed(() => {
     if (sorting.value === "asc" && u1.fullName > u2.fullName) {
       return 1;
     } else if (sorting.value === "asc") {
-      return -1
+      return -1;
     } else if (sorting.value === "desc" && u1.fullName > u2.fullName) {
       return -1;
     } else {
@@ -77,16 +80,16 @@ function sort(mode) {
 watch(enteredSearchTerm, function (val) {
   setTimeout(() => {
     if (val === enteredSearchTerm.value) {
-      activeSearchTerm.value = val
+      activeSearchTerm.value = val;
     }
   }, 300);
 });
 </script>
 
 <style scoped>
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 </style>

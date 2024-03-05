@@ -1,30 +1,29 @@
 <template>
   <main>
-    <UserList :users="activeUsers" @list-projects="selectUser"/>
+    <UserList :users="activeUsers" @list-projects="selectUser" />
     <ProjectList :user="selectUser" />
   </main>
 </template>
 
 <script>
-import USER_DATA from "/dummy-data.js"
+import USER_DATA from "/dummy-data.js";
 
-import UserList From "./components/users/UserList.vue"
-import ProjectList From "./components/projects/ProjectList.vue"
+import UserList from "./components/users/UserList.vue";
+import ProjectList from "./components/projects/ProjectList.vue";
 
-import {ref} from "vue"
+import { ref } from "vue";
 
-const selectedUser = ref(null)
-const activeUsers = ref(USER_DATA)
+const selectedUser = ref(null);
+const activeUsers = ref(USER_DATA);
 
-function selectUser(uid){
-  selectedUser.value = activeUsers.value.find(user => user.id === uid)
+function selectUser(uid) {
+  selectedUser.value = activeUsers.value.find((user) => user.id === uid);
 }
-
 </script>
 
 <style>
 * {
-  box-sizing:border-box;
+  box-sizing: border-box;
 }
 
 html {

@@ -1,17 +1,17 @@
 <template>
   <li>
-    <h3>{{title}}</h3>
+    <h3>{{ title }}</h3>
   </li>
 </template>
 
 <script setup>
-import {defineProps} from 'vue';
+import { defineProps } from "vue";
 
 defineProps({
   title: {
     type: String,
-    default: ''
-  }
+    default: "",
+  },
 });
 </script>
 
