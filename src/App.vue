@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import USER_DATA from "/dummy-data.js";
+import USER_DATA from "./dummy-data.js";
 
 import UserList from "./components/users/UserList.vue";
 import ProjectList from "./components/projects/ProjectList.vue";

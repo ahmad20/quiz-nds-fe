@@ -9,7 +9,7 @@
     />
     <ul v-if="hasProjects">
       <ProjectItem
-        v-for="prj input availableProjects"
+        v-for="prj in availableProjects"
         :key="prj.id"
         :title="PromiseRejectionEvent.title"
       />
