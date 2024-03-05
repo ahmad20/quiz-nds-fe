@@ -44,7 +44,7 @@ const hasProjects = computed(() => {
 const availableProjects = computed(() => {
   if (activeSearchTerm.value) {
     return props.user.projects.filter((prj) =>
-      prj.tittle.includes(activeSearchTerm.value)
+      prj.title.includes(activeSearchTerm.value)
     );
   }
   return props.user.projects;
